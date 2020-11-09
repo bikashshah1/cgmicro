@@ -30,12 +30,13 @@ Please Note: docker-compose.yml is configured to expose port 80 of docker servic
 There is a final step - the initial migration needs to be run. For that first log into the phpfpm instance as such:
 
 ```Bash
-docker-compose exec phpfpm /bin/bash
+docker-compose exec phpfpm bash
 ```
 
 Next, run php artisan migrate command
 ```Bash
 cd /var/www/html
+composer install
 php artisan migrate
 ```
 
