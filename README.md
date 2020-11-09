@@ -1,7 +1,7 @@
 # CGTest Only
 
 
-This project uses docker-compose to setup Lumen-based micro-services that does a based CRUD operation on Items. It uses PHPUnit for Unit Testing. The tech stack used are nginx, phpfpm, mysql8 - as described in docker-compose.yml file. 
+This project uses docker-compose to setup Lumen-based micro-services that does a basic CRUD operation on Items. It uses PHPUnit for Unit Testing. The tech stack used are nginx, phpfpm, mysql8 - as described in docker-compose.yml file. 
 
 Lumen is a very robust micro-framework fork of Laravel. This stack is a good fit for micro-services development as well deployment. nginx can be configuired for load-balancing, though an API Gateway would be a better choice. This project can be easily deployed into kubernetes as well. 
 
