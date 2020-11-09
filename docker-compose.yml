@@ -1,0 +1,67 @@
+# docker-compose.yml 
+# Prepared By: Bikash Shah
+
+# php-fpm 7.4, nginx, mysql 8 and lumen -  choice for high-performing microservices node
+# Further Suggestions (that can be more of a DevOps tasks, so left for prod): 
+#   -- Redis  
+#   -- Kubernetes 
+
+
+version: '3.0'
+
+services:
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password #required for mysql 8
+    tty: true
+    ports:
+      - "43306:3306"
+    environment:
+      MYSQL_DATABASE: cgtest_db
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_PASSWORD: test
+      MYSQL_USER: root
+
+      SERVICE_NAME: mysql
+      SERVICE_TAGS: dev
+    
+
+    networks:
+      - carsguide-network
+
+  phpfpm:
+    build:
+      context: ./src/
+      dockerfile: Dockerfile
+
+    container_name: cgtest_app
+    working_dir: /var/www/html/
+    volumes: 
+      - ./src:/var/www/html/
+    networks:
+      - carsguide-network
+
+  nginx:
+    image: nginx:latest 
+    restart: unless-stopped
+    tty: true
+    # change this port as per the local machines free port
+    ports:
+      - "8080:80"
+    volumes: 
+      # linked the error and access log to make it easy to debugging. As well as lumen project is linked to local machine
+      - './nginx/logs/access.log:/var/log/nginx/access.log'
+      - './nginx/logs/error.log:/var/log/nginx/error.log'
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - './src/:/var/www/html/'
+    networks:
+      - carsguide-network   
+
+
+networks:
+  carsguide-network:
+    driver: bridge
+
+
