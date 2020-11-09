@@ -1,8 +1,9 @@
-# carsguidemicro
+# CGTest Only
 
-docker-compose.yml describes the 3 different services used for this test - nginx, phpfpm and mysql8. 
 
-Coupled with Lumen - the micro-framework of Laravel, this stack is a good fit for micro-services development as well deployment. nginx can be configuired for load-balancing, however an API Gateway would be ideal for that purpose. This project can be easily deployed into kubernetes as well. 
+This project uses docker-compose to setup Lumen-based micro-services that does a based CRUD operation on Items. It uses PHPUnit for Unit Testing. The tech stack used are nginx, phpfpm, mysql8 - as described in docker-compose.yml file. 
+
+Lumen is a very robust micro-framework fork of Laravel. This stack is a good fit for micro-services development as well deployment. nginx can be configuired for load-balancing, though an API Gateway would be a better choice. This project can be easily deployed into kubernetes as well. 
 
 
 
@@ -47,6 +48,13 @@ To run the UNIT Test (I have used PHPUnit provided by default in Lumen), once lo
 cd /var/www/html
 ./vendor/bin/phpunit
 ```
+
+
+##Not In Scope.
+
+- The project doesn't have any authentication setup as this micro-service can be setup behind an API gateway that then takes care of throttling, authentication, rate-limiting, load-balancing and many more. 
+
+- The project isn't using Redis or another Cache driver - that is a DevOps configuration and quick facade can be added to achieve improved throughput 
 
 
 
