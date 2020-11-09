@@ -15,7 +15,7 @@ This assumes that that docker and docker-compose is already installed in the mac
 
 First, clone the application, cd into the cgmicro folder and run the docker-compose up -d command as such. 
 ```Bash
-git clone git@github.com:bikashshah1/cgmicro.git
+git clone https://github.com/bikashshah1/cgmicro.git
 cd cgmicro
 docker-compose up -d
 ```
