@@ -50,7 +50,7 @@ cd /var/www/html
 ```
 
 
-##Not In Scope.
+## Not In Scope.
 
 - The project doesn't have any authentication setup as this micro-service can be setup behind an API gateway that then takes care of throttling, authentication, rate-limiting, load-balancing and many more. 
 
